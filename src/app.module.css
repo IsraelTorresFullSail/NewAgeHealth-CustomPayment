@@ -1,0 +1,28 @@
+/**
+******** LAYOUT ********
+**/
+
+.body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 5vw 0;
+  background-color: var(--bg-color);
+  justify-content: space-between;
+}
+
+.main__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 47.5vw;
+  margin: 0 auto;
+  padding: 2.04vw;
+  background-color: var(--white-color);
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-grow: 5;
+}

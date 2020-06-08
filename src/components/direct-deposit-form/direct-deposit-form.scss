@@ -1,0 +1,68 @@
+$active-color: #c8c8c8;
+$inactive-color: #dddddd;
+$light-color: #eeeeee;
+$font-color: #333333;
+$red-color: #ff0000;
+$blue-color: #0b8ff9;
+$bg-color: rgba(0, 0, 0, 0.03);
+$white-color: #ffffff;
+$border-color: #cccccc;
+$placeholder: #555;
+$sub-color: grey;
+
+h1 {
+    font-weight: 700;
+    font-size: 1.5vw;
+    line-height: 150%;
+    color: $font-color;
+    margin: 20px 0px 10px 0px;
+    letter-spacing: 0.16vw;
+    text-align: center;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 1.25vw;
+    line-height: 150%;
+    color: $font-color;
+    margin: 10px 0px 10px 0px;
+    text-align: center;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    color: $font-color;
+    margin: 0 0 1.04vw 0;
+}
+
+.red {
+    color: $red-color;
+}
+
+p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: $font-color;
+    margin: 0 0 1.04vw 0;
+}
+
+.select {
+    background: none;
+    background-color: white;
+    color: $sub-color;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $sub-color;
+    margin: 25px 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
