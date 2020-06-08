@@ -4,6 +4,11 @@ import Select from 'react-dropdown-select';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 
+import { FaUser, FaDollarSign, FaMapSigns } from 'react-icons/fa';
+import { GiEarthAmerica } from 'react-icons/gi';
+import { TiLocation } from 'react-icons/ti';
+import { MdEmail, MdLocalPhone } from 'react-icons/md';
+
 import './direct-deposit-form.scss';
 
 const optionsDay = [
@@ -78,92 +83,127 @@ class DirectDepositForm extends React.Component {
                 <p>You authorize regularly scheduled charges to your checking/savings account. You will be charged the amount indicated below each billing period. The charge will appear on your bank statement as an “ACH Debit.” You agree that no prior-notification will be provided unless the date or amount changes.</p>
                 <h3 className='red'>Address changes must be reported right away, if not and shipment goes out the patient is responsible for all loss of medications and shipping expenses.</h3>
                 <form method="POST" className='form' onSubmit={this.handleSubmit}>
-                    <FormInput 
-                        type="text"
-                        name="name"
-                        value={name}
-                        onChange={this.handleChange}
-                        label="Full Name"
-                        required
-                    />
-                    <FormInput 
-                        type="number"
-                        name="amount"
-                        value={amount}
-                        onChange={this.handleChange}
-                        label="Amount"
-                        required
-                    />
-                    <Select 
-                        name="day"
-                        options={optionsDay}
-                        onChange={this.handleChangeDay}
-                        value={day}
-                        className='select'
-                    />
-                    <Select 
-                        name="month"
-                        options={optionsMonth}
-                        onChange={this.handleChangeMonth}
-                        value={month}
-                        className='select'
-                    />
-                    <Select 
-                        name="therapy"
-                        options={optionsTherapy}
-                        onChange={this.handleChangeTherapy}
-                        value={therapy}
-                        className='select'
-                    />
-                    <FormInput 
-                        type="text"
-                        name="address"
-                        value={address}
-                        onChange={this.handleChange}
-                        label="Street Address"
-                        required
-                    />
-                    <FormInput 
-                        type="text"
-                        name="city"
-                        value={city}
-                        onChange={this.handleChange}
-                        label="City"
-                        required
-                    />
-                    <FormInput 
-                        type="text"
-                        name="state"
-                        value={state}
-                        onChange={this.handleChange}
-                        label="State"
-                        required
-                    />
-                    <FormInput 
-                        type="number"
-                        name="zip"
-                        value={zip}
-                        onChange={this.handleChange}
-                        label="Postal / Zip Code"
-                        required
-                    />
-                    <FormInput 
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={this.handleChange}
-                        label="Email"
-                        required
-                    />
-                    <FormInput 
-                        type="number"
-                        name="phone"
-                        value={phone}
-                        onChange={this.handleChange}
-                        label="Phone"
-                        required
-                    />
-                    <CustomButton type="submit">Save</CustomButton>
+                    <div className='input-wrapper-65'>
+                        <FormInput 
+                            type="text"
+                            name="name"
+                            value={name}
+                            onChange={this.handleChange}
+                            label="Full Name"
+                            required
+                            icon={<FaUser className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-30'>
+                        <FormInput 
+                            type="number"
+                            name="amount"
+                            value={amount}
+                            onChange={this.handleChange}
+                            label="Amount"
+                            required
+                            icon={<FaDollarSign className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-30'>
+                        <Select 
+                            name="day"
+                            options={optionsDay}
+                            onChange={this.handleChangeDay}
+                            value={day}
+                            className='select'
+                            placeholder='Day'
+                        />
+                    </div>
+                    <div className='input-wrapper-30'>
+                        <Select 
+                            name="month"
+                            options={optionsMonth}
+                            onChange={this.handleChangeMonth}
+                            value={month}
+                            className='select'
+                            placeholder='Month'
+                        />
+                    </div>
+                    <div className='input-wrapper-30'>
+                        <Select 
+                            name="therapy"
+                            options={optionsTherapy}
+                            onChange={this.handleChangeTherapy}
+                            value={therapy}
+                            className='select'
+                            placeholder='Select service...'
+                        />
+                    </div>
+                    <div className='input-wrapper-100'>
+                        <FormInput 
+                            type="text"
+                            name="address"
+                            value={address}
+                            onChange={this.handleChange}
+                            label="Street Address"
+                            required
+                            icon={<FaMapSigns className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-30'>
+                        <FormInput 
+                            type="text"
+                            name="city"
+                            value={city}
+                            onChange={this.handleChange}
+                            label="City"
+                            required
+                            icon={<TiLocation className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-30'>
+                        <FormInput 
+                            type="text"
+                            name="state"
+                            value={state}
+                            onChange={this.handleChange}
+                            label="State"
+                            required
+                            icon={<TiLocation className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-30'>
+                        <FormInput 
+                            type="number"
+                            name="zip"
+                            value={zip}
+                            onChange={this.handleChange}
+                            label="Postal / Zip Code"
+                            required
+                            icon={<GiEarthAmerica className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-48'>
+                        <FormInput 
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={this.handleChange}
+                            label="Email"
+                            required
+                            icon={<MdEmail className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-48'>
+                        <FormInput 
+                            type="number"
+                            name="phone"
+                            value={phone}
+                            onChange={this.handleChange}
+                            label="Phone"
+                            required
+                            icon={<MdLocalPhone className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-100'>
+                        <CustomButton type="submit">Save</CustomButton>
+                    </div>
                 </form>
             </>
         )

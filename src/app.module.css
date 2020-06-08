@@ -19,10 +19,28 @@
   width: 100%;
   max-width: 47.5vw;
   margin: 0 auto;
-  padding: 2.04vw;
+  padding: 30px;
   background-color: var(--white-color);
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: flex-start;
   flex-grow: 5;
+}
+
+@media (max-width: 1400px) {
+  .main__container {
+    max-width: 60vw;
+  }     
+}
+
+@media (max-width: 1024px) {
+  .main__container {
+    max-width: 70vw;
+  }     
+}
+
+@media (max-width: 600px) {
+  .main__container {
+    max-width: 80vw;
+  }     
 }

@@ -15,6 +15,7 @@ const FormInput = ({ handleChange, label, ...otherProps}) => (
                 {label}
             </label>
         ) : null}
+        {otherProps.icon}
     </div>
 );
 
