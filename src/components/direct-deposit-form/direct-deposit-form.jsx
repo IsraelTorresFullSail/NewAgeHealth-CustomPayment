@@ -14,9 +14,10 @@ import './direct-deposit-form.scss';
 import firebase from '../../firebase/firebase.utils';
 
 const optionsDay = [
-    { label: "1st", value: "1st" },
-    { label: "2nd", value: "2nd" },
-    { label: "3th", value: "3th" },
+    { label: "1st", value: "1st" }, { label: "2nd", value: "2nd" }, { label: "3rd", value: "3rd" }, { label: "4th", value: "4th" }, { label: "5th", value: "5th" }, { label: "6th", value: "6th" }, { label: "7th", value: "7th" }, { label: "8th", value: "8th" }, { label: "9th", value: "9th" },
+    { label: "10th", value: "10th" }, { label: "11th", value: "11th" }, { label: "12th", value: "12th" }, { label: "13th", value: "13th" }, { label: "14th", value: "14th" }, { label: "15th", value: "15th" }, { label: "16th", value: "16th" }, { label: "17th", value: "17th" }, { label: "18th", value: "18th" }, { label: "19th", value: "19th" }, { label: "20th", value: "20th" },
+    { label: "21st", value: "21st" }, { label: "22nd", value: "22nd" }, { label: "23rd", value: "23rd" }, { label: "24th", value: "24th" }, { label: "25th", value: "25th" }, { label: "26th", value: "26th" }, { label: "27th", value: "27th" }, { label: "28th", value: "28th" }, { label: "29th", value: "29th" }, { label: "30th", value: "30th" },
+    { label: "31st", value: "31st" },
 ];
 const optionsMonth = [
     { label: "January", value: "January" }, { label: "February", value: "February" }, { label: "March", value: "March" }, { label: "April", value: "April" },
@@ -28,7 +29,6 @@ const optionsTherapy = [
     { label: "Cannabidiol Therapy", value: "Cannabidiol Therapy" }, { label: "Erectile Dysfunction", value: "Erectile Dysfunction" }, { label: "IV Therapy", value: "IV Therapy" },
     { label: "Testosterone Therapy", value: "Testosterone Therapy" },
 ];
-
 class DirectDepositForm extends React.Component {
     constructor(props) {
         super(props);
@@ -45,39 +45,49 @@ class DirectDepositForm extends React.Component {
             zip: '',
             email: '',
             phone: '',
+            accountType: '',
+            nameOnAccount: '',
+            accountNumber: '',
+            bankRouting: '',
+            bankName: '',
+            bankCityState: '',
+            signature: '',
+            date: '',
+            termsConditionsAgreement: '',
+            termsConditionsSignature: '',
         };
     }
 
-
     handleChangeDay = (selectedDay) => {
-        const day = '';
-        this.setState({ [day]: selectedDay.value });
+        this.setState({ day: Object.values(selectedDay[0])[0] });
     }
 
     handleChangeMonth = (selectedMonth) => {
-        const month = '';
-        this.setState({ [month]: selectedMonth });
+        this.setState({ month: Object.values(selectedMonth[0])[0] });
     }
 
     handleChangeTherapy = (selectedTherapy) => {
-        const therapy = '';
-        this.setState({ [therapy]: selectedTherapy });
+        this.setState({ therapy: Object.values(selectedTherapy[0])[0] });
     }
 
     handleSubmit = async event => {
         event.preventDefault();
 
-        const { name, amount, day, month, therapy, address, city, state, zip, email, phone } = this.state;
+        const { 
+            name, amount, day, month, therapy, address, city, state, zip, email, phone,
+            accountType, nameOnAccount, accountNumber, bankRouting, bankName, bankCityState, signature, date, termsConditionsAgreement, termsConditionsSignature
+        } = this.state;
 
         this.ref.add({
-            name, amount, day, month, therapy, address, city, state, zip, email, phone
+            name, amount, day, month, therapy, address, city, state, zip, email, phone,
+            accountType, nameOnAccount, accountNumber, bankRouting, bankName, bankCityState, signature, date, termsConditionsAgreement, termsConditionsSignature
           }).then((docRef) => {
             this.setState({
                 name: '',
                 amount: '',
-                day: null,
-                month: null,
-                therapy: null,
+                day: '',
+                month: '',
+                therapy: '',
                 address: '',
                 city: '',
                 state: '',
@@ -85,7 +95,8 @@ class DirectDepositForm extends React.Component {
                 email: '',
                 phone: '',
             });
-            this.props.history.push("/")
+            // Get the current doc Id and redirect to the user info page
+            this.props.history.push(`/personal-info/${docRef.Pc.path.segments[1]}`)
           })
           .catch((error) => {
             console.error("Error adding document: ", error);
@@ -98,8 +109,8 @@ class DirectDepositForm extends React.Component {
     }
 
     render() {
+        // eslint-disable-next-line
         const { name, amount, day, month, therapy, address, city, state, zip, email, phone } = this.state;
-
         return(
             <>
                 <h1>New Age Health And Wellness</h1>
@@ -138,7 +149,6 @@ class DirectDepositForm extends React.Component {
                             name="day"
                             options={optionsDay}
                             onChange={this.handleChangeDay}
-                            value={day}
                             className='select'
                             placeholder='Day *'
                             required
@@ -149,7 +159,6 @@ class DirectDepositForm extends React.Component {
                             name="month"
                             options={optionsMonth}
                             onChange={this.handleChangeMonth}
-                            value={month}
                             className='select'
                             placeholder='Month *'
                             required
@@ -160,7 +169,6 @@ class DirectDepositForm extends React.Component {
                             name="therapy"
                             options={optionsTherapy}
                             onChange={this.handleChangeTherapy}
-                            value={therapy}
                             className='select'
                             placeholder='Select service... *'
                             required

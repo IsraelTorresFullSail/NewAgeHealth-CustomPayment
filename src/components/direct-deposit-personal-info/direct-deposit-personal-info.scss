@@ -1,0 +1,106 @@
+$active-color: #c8c8c8;
+$inactive-color: #dddddd;
+$light-color: #eeeeee;
+$font-color: #333333;
+$red-color: #ff0000;
+$blue-color: #0b8ff9;
+$bg-color: rgba(0, 0, 0, 0.03);
+$white-color: #ffffff;
+$border-color: #cccccc;
+$placeholder: #555;
+$sub-color: grey;
+
+.icon {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    color: $placeholder;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .form__label {
+        color: $font-color;
+        display: block;
+        margin: 25px 0 0px 5px;
+        cursor: pointer;
+    }
+    .form__label span {
+        display: block;
+        margin-bottom: 12px;
+    }
+    .form__labelInline {
+        display: inline-block;
+        margin-right: 20px;
+        color: $font-color;
+        line-height: 20px;
+        vertical-align: top;
+        font-size: 16px;
+    }
+    .form__labelInline span {
+        display: inline;
+    }
+    .form__input__radio {
+        visibility: hidden;
+        position: relative;
+        margin-right: 10px;
+    }
+    
+    .form__input__radio::before {
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 1px solid $font-color;
+        content: '';
+        border-radius: 50%;
+        visibility: visible;
+    }
+    
+    .form__input__radio:checked::after {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: $blue-color;
+        content: '';
+        border-radius: 50%;
+        visibility: visible;
+    }
+}
+
+.input-wrapper-30 {
+    width: 30%;
+
+    @media (max-width: 900px) {
+        width: 48%;
+    }
+    @media (max-width: 500px) {
+        width: 100%;
+    }
+}
+.input-wrapper-48 {
+    width: 48%;
+
+    @media (max-width: 500px) {
+        width: 100%;
+    }
+}
+.input-wrapper-65 {
+    width: 65%;
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
+}
+.input-wrapper-100 {
+    width: 100%;
+}
