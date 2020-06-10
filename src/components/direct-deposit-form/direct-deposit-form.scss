@@ -52,8 +52,8 @@ p {
 .select {
     background: none;
     background-color: white;
-    color: $sub-color;
-    font-size: 18px;
+    color: $font-color;
+    font-size: 16px;
     padding: 10px 10px 10px 5px;
     display: block;
     width: 100%;
@@ -64,10 +64,19 @@ p {
     border-right: none !important;
     border-top: none !important;
     margin: 25px 0;
+    outline: none !important;
 
     &:focus {
-      outline: none;
+      outline: none !important;
     }
+}
+
+.css-12zlm52-ReactDropdownSelect:hover, .css-12zlm52-ReactDropdownSelect:focus-within {
+    border-color: none !important;
+}
+.css-12zlm52-ReactDropdownSelect:focus, .css-12zlm52-ReactDropdownSelect:focus-within {
+    outline: 0;
+    box-shadow: none !important;
 }
 
 .icon {

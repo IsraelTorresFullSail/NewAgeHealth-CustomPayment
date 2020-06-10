@@ -30,7 +30,7 @@ class DirectDepositConfirmation extends React.Component {
     }
 
     onClick = () => {
-        const element = document.querySelector('#container');
+        const element = document.querySelector('#container').innerHTML;
         let blob = new Blob([element], { type: "text/html"});
         let fileList = [];
         fileList.push(blob);
@@ -47,32 +47,64 @@ class DirectDepositConfirmation extends React.Component {
 
     render() {
         return (
-            <div id="container">
-                <h1>New Age Health And Wellness</h1>
-                <h2>12785 West Forest Hill Blvd, Wellington, Florida 33414</h2>
-                <h2>866-921-8779</h2>
-                <h1>Recurring Payment Authorization Form</h1>
-                <p>Schedule your payment to be automatically deducted from your bank account. Just complete and sign this form to get started!</p>
-                <h3>Here’s How Recurring Payments Work:</h3>
-                <p>You authorize regularly scheduled charges to your checking/savings account. You will be charged the amount indicated below each billing period. The charge will appear on your bank statement as an “ACH Debit.” You agree that no prior-notification will be provided unless the date or amount changes.</p>
-                <h3 className='red'>Address changes must be reported right away, if not and shipment goes out the patient is responsible for all loss of medications and shipping expenses.</h3>
-                <p>
-                    I <strong>{this.state.directDeposit.name}</strong> authorize New Age Health And Wellness to charge my checking/savings account indicated below 
-                    for <strong>${this.state.directDeposit.amount}</strong> on the <strong>{this.state.directDeposit.day}</strong> of each <strong>{this.state.directDeposit.month}</strong> for (day or date)
-                    payment of my <strong>{this.state.directDeposit.therapy}</strong>.
-                </p>
-                <h3>Account Type: </h3><p>{this.state.directDeposit.accountType}</p>
-                <h3>Name on Account: </h3><p>{this.state.directDeposit.nameOnAccount}</p>
-                <h3>Account Number: </h3><p>{this.state.directDeposit.accountNumber}</p>
-                <h3>Bank Routing: </h3><p>{this.state.directDeposit.bankRouting}</p>
-                <h3>Bank Name: </h3><p>{this.state.directDeposit.bankName}</p>
-                <h3>Bank City / State: </h3><p>{this.state.directDeposit.bankCityState}</p>
-                <h3>Signature: </h3><p>{this.state.directDeposit.signature}</p>
-                <h3>Date: </h3><p>{this.state.directDeposit.date}</p>
+            <>
+                <div id="container" style={{
+                    width: '210mm',
+                    minHeight: '297mm',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    border: '2px solid #ccc',
+                    padding: '0 10px',
+                    overflow: 'hidden' 
+                }}>
+                    <img src="https://uploads-ssl.webflow.com/5e6fbba78a57c2521e3e7157/5e7513a1c335eb13f6e08052_newAge-logo.png" alt="Company Logo" style={{
+                        width: '100%',
+                        maxWidth: '150px',
+                        margin: '-10px auto -20px auto'
+                    }} /> 
+                    <h1>New Age Health And Wellness</h1>
+                    <h2>12785 West Forest Hill Blvd, Wellington, Florida 33414</h2>
+                    <h2>866-921-8779</h2>
+                    <h1>Recurring Payment Authorization Form</h1>
+                    <p>Schedule your payment to be automatically deducted from your bank account. Just complete and sign this form to get started!</p>
+                    <h3>Here is How Recurring Payments Work:</h3>
+                    <p>You authorize regularly scheduled charges to your checking/savings account. You will be charged the amount indicated below each billing period. The charge will appear on your bank statement as an ACH Debit. You agree that no prior-notification will be provided unless the date or amount changes.</p>
+                    <h3 className='red'>Address changes must be reported right away, if not and shipment goes out the patient is responsible for all loss of medications and shipping expenses.</h3>
+                    <p>
+                        I <strong>{this.state.directDeposit.name}</strong> authorize New Age Health And Wellness to charge my checking/savings account indicated below 
+                        for <strong>${this.state.directDeposit.amount}</strong> on the <strong>{this.state.directDeposit.day}</strong> of each <strong>{this.state.directDeposit.month}</strong> for (day or date)
+                        payment of my <strong>{this.state.directDeposit.therapy}</strong>.
+                    </p>
+                    <div className='text-wrapper'>
+                        <h3 className='space'>Account Type: <span className='span'>{this.state.directDeposit.accountType}</span></h3>
+                    </div>
+                    <div className='text-wrapper'>
+                        <h3 className='space'>Name on Account: <span className='span'>{this.state.directDeposit.nameOnAccount}</span></h3>
+                    </div>
+                    <div className='text-wrapper'>
+                        <h3 className='space'>Account Number: <span className='span'>{this.state.directDeposit.accountNumber}</span></h3>
+                    </div>
+                    <div className='text-wrapper'>
+                        <h3 className='space'>Bank Routing: <span className='span'>{this.state.directDeposit.bankRouting}</span></h3>
+                    </div>
+                    <div className='text-wrapper'>
+                        <h3 className='space'>Bank Name: <span className='span'>{this.state.directDeposit.bankName}</span></h3>
+                    </div>
+                    <div className='text-wrapper'>
+                        <h3 className='space'>Bank City / State: <span className='span'>{this.state.directDeposit.bankCityState}</span></h3>
+                    </div>
+                    <div className='text-wrapper'>
+                        <h3 className='space'>Signature: <span className='span'>{this.state.directDeposit.signature}</span></h3>
+                    </div>
+                    <div className='text-wrapper'>
+                        <h3 className='space'>Date: <span className='span'>{this.state.directDeposit.date}</span></h3>
+                    </div>
+                    
+                </div>
                 <div className='input-wrapper-100'>
                     <CustomButton onClick={this.onClick}>Confirm</CustomButton>
                 </div>
-            </div>
+            </>
         )
     }
 }

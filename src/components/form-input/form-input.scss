@@ -1,11 +1,12 @@
 $sub-color: grey;
 $main-color: black;
 $placeholder: #555;
+$font-color: #333333;
 
 @mixin shrinkLabel {
   top: -14px;
   font-size: 12px;
-  color: $main-color;
+  color: $placeholder;
 }
 
 .group {
@@ -15,8 +16,8 @@ $placeholder: #555;
   .form-input {
     background: none;
     background-color: white;
-    color: $sub-color;
-    font-size: 18px;
+    color: $font-color;
+    font-size: 16px;
     padding: 10px 25px 5px 5px;
     display: block;
     width: 100%;
@@ -31,6 +32,10 @@ $placeholder: #555;
 
     &:focus ~ .form-input-label {
       @include shrinkLabel();
+    }
+
+    &::placeholder {
+      color: $placeholder;
     }
   }
 

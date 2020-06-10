@@ -106,7 +106,7 @@ class DirectDepositPersonalInfo extends React.Component {
             termsConditionsAgreement: false,
             termsConditionsSignature: false,
         });
-            this.props.history.push("/payment-confirmation");
+            this.props.history.push(`/payment-confirmation/${docRef.Pc.path.segments[1]}`);
         })
             .catch((error) => {
             console.error("Error adding document: ", error);
@@ -124,6 +124,7 @@ class DirectDepositPersonalInfo extends React.Component {
     }
 
     render() {
+        // eslint-disable-next-line
         const { accountType, nameOnAccount, accountNumber, bankRouting, bankName, bankCityState, signature, date, termsConditionsAgreement, termsConditionsSignature } = this.state;
         return (
             <>

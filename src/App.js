@@ -18,7 +18,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={DirectDepositForm} />
               <Route path='/personal-info/:id' component={DirectDepositPersonalInfo} />
-              <Route path='/payment-confirmation' component={DirectDepositConfirmation} />
+              <Route path='/payment-confirmation/:id' component={DirectDepositConfirmation} />
             </Switch>
           </main>
           <Footer />
