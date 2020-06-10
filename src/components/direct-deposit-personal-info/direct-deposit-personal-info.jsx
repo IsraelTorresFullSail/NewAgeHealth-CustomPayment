@@ -1,6 +1,7 @@
 import React from 'react';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
+import Checkbox from '../checkbox/checkbox';
 
 import { FaUser, FaHashtag, FaSignature } from 'react-icons/fa';
 import { TiLocation } from 'react-icons/ti';
@@ -36,8 +37,8 @@ class DirectDepositPersonalInfo extends React.Component {
             bankCityState: '',
             signature: '',
             date: '',
-            termsConditionsAgreement: '',
-            termsConditionsSignature: '',
+            termsConditionsAgreement: false,
+            termsConditionsSignature: false,
         };
     }
 
@@ -102,10 +103,10 @@ class DirectDepositPersonalInfo extends React.Component {
             bankCityState: '',
             signature: '',
             date: '',
-            termsConditionsAgreement: '',
-            termsConditionsSignature: '',
+            termsConditionsAgreement: false,
+            termsConditionsSignature: false,
         });
-            this.props.history.push("https://www.nahaw.com/thank-you");
+            this.props.history.push("/payment-confirmation");
         })
             .catch((error) => {
             console.error("Error adding document: ", error);
@@ -115,6 +116,11 @@ class DirectDepositPersonalInfo extends React.Component {
     handleChange = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
+    }
+
+    handleCheckboxChange = event => {
+        const { name, checked } = event.target;
+        this.setState({ [name]: checked })
     }
 
     render() {
@@ -242,6 +248,28 @@ class DirectDepositPersonalInfo extends React.Component {
                             required
                             icon={<BsCalendar className='icon' />}
                         />
+                    </div>
+                    <div className='input-wrapper-100'>
+                        <div className='checkbox-wrapper'>
+                            <Checkbox
+                                name="termsConditionsAgreement"
+                                checked={this.state.checked}
+                                onChange={this.handleCheckboxChange}
+                                required
+                            />
+                            <p>I understand that checking this box constitutes a legal signature confirming that I acknowledge and agree to the above Terms of Acceptance.</p>
+                        </div>
+                    </div>
+                    <div className='input-wrapper-100'>
+                        <div className='last-wrapper'>
+                            <Checkbox
+                                name="termsConditionsSignature"
+                                checked={this.state.checked}
+                                onChange={this.handleCheckboxChange}
+                                required
+                            />
+                            <p>I understand that this authorization will remain in effect until I cancel it in writing, and I agree to notify New Age Health And Wellness in writing of any changes in my account information or termination of this authorization at least 60 days prior to the next billing date. If the above noted payment dates fall on a weekend or holiday, I understand that because these are electronic transactions, these funds may be withdrawn from my account as soon as the above noted periodic transaction dates. In the case of an ACH Transaction being rejected for Non Sufficient Funds (NSF) I understand that New Age Health And Wellness may at its discretion attempt to process the charge again in 3 business days, and agree to an additional 50.00 charge for each attempt returned NSF. I acknowledge that the origination of ACH transactions to my account must comply with the provisions of U.S. law. I certify that I am an authorized user of this bank account and will not dispute these scheduled transactions with my bank; so long as the transactions correspond to the terms indicated in this authorization form.</p>
+                        </div>
                     </div>
                     <div className='input-wrapper-100'>
                         <CustomButton type="submit">Save</CustomButton>
