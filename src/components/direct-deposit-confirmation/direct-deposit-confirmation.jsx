@@ -1,5 +1,6 @@
 import React from 'react';
 import CustomButton from '../custom-button/custom-button';
+import { Redirect } from 'react-router-dom';
 
 import './direct-deposit-confirmation.scss';
 
@@ -11,6 +12,7 @@ class DirectDepositConfirmation extends React.Component {
         this.state = {
             directDeposit: {},
             key: '',
+            message: false,
         };
     }
 
@@ -30,6 +32,9 @@ class DirectDepositConfirmation extends React.Component {
     }
 
     onClick = () => {
+        const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+        const url = "https://usebasin.com/f/a332bf5eec53";
+
         const element = document.querySelector('#container').innerHTML;
         let blob = new Blob([element], { type: "text/html"});
         let fileList = [];
@@ -40,12 +45,17 @@ class DirectDepositConfirmation extends React.Component {
         for(let x = 0; x < fileList.length; x++) {
             formData.append('direct-deposit', fileList[0], 'direct-deposit.html');
         }
+
         let request = new XMLHttpRequest();
-        request.open("POST", "https://usebasin.com/f/a332bf5eec53");
+        request.open("POST", proxyUrl + url);
         request.send(formData);
+        this.setState({ message: true });
     }
 
+//"https://www.nahaw.com/thank-you"
     render() {
+        const { message } = this.state;
+        if (message === true) return <Redirect to="/thank-you" />;
         return (
             <>
                 <div id="container" style={{

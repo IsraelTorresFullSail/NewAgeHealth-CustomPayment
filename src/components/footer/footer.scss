@@ -1,12 +1,38 @@
+$white-color: #ffffff;
+$active-color: #c8c8c8;
+$blue-color: #0b8ff9;
+
 .footer {
     height: auto;
     width: 100%;
     background-color: #29333c;
     margin-top: 2vw;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
 
 
     .text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         width: 100%;
+        max-width: 47.5vw;
+        padding: 30px;
+        
+        p {
+            color: $active-color;
+        }
+
+        a {
+            color: $white-color;
+            text-decoration: none;
+            transition: all ease .3s;
+
+            &:hover {
+                color: $blue-color;
+            }
+        }
     }
 }
