@@ -7,6 +7,7 @@ import DirectDepositForm from './components/direct-deposit-form/direct-deposit-f
 import DirectDepositPersonalInfo from './components/direct-deposit-personal-info/direct-deposit-personal-info';
 import DirectDepositConfirmation from './components/direct-deposit-confirmation/direct-deposit-confirmation';
 import Footer from './components/footer/footer';
+import ThankYouPage from './components/thank-you-page/thank-you-page';
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
               <Route exact path='/' component={DirectDepositForm} />
               <Route path='/personal-info/:id' component={DirectDepositPersonalInfo} />
               <Route path='/payment-confirmation/:id' component={DirectDepositConfirmation} />
+              <Route path='/thank-you' component={ThankYouPage} />
             </Switch>
           </main>
           <Footer />

@@ -2,11 +2,14 @@ import React from 'react';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 import Checkbox from '../checkbox/checkbox';
+import { Redirect } from 'react-router-dom';
 
-import { FaUser, FaHashtag, FaSignature } from 'react-icons/fa';
+import { FaUser, FaHashtag, FaSignature, FaMapSigns } from 'react-icons/fa';
 import { TiLocation } from 'react-icons/ti';
 import { AiFillBank } from 'react-icons/ai';
 import { BsCalendar } from 'react-icons/bs';
+import { GiEarthAmerica } from 'react-icons/gi';
+import { MdEmail, MdLocalPhone } from 'react-icons/md';
 
 import './direct-deposit-personal-info.scss';
 
@@ -39,6 +42,7 @@ class DirectDepositPersonalInfo extends React.Component {
             date: '',
             termsConditionsAgreement: false,
             termsConditionsSignature: false,
+            docId: '',
         };
     }
 
@@ -56,12 +60,6 @@ class DirectDepositPersonalInfo extends React.Component {
               day: directDeposit.day,
               month: directDeposit.month,
               therapy: directDeposit.therapy,
-              address: directDeposit.address,
-              city: directDeposit.city,
-              state: directDeposit.state,
-              zip: directDeposit.zip,
-              email: directDeposit.email,
-              phone: directDeposit.phone,
             });
           } else {
             console.log("No such document!");
@@ -106,7 +104,7 @@ class DirectDepositPersonalInfo extends React.Component {
             termsConditionsAgreement: false,
             termsConditionsSignature: false,
         });
-            this.props.history.push(`/payment-confirmation/${docRef.Pc.path.segments[1]}`);
+            this.setState({ docId: updateRef.Pc.path.segments[1] });
         })
             .catch((error) => {
             console.error("Error adding document: ", error);
@@ -125,7 +123,9 @@ class DirectDepositPersonalInfo extends React.Component {
 
     render() {
         // eslint-disable-next-line
-        const { accountType, nameOnAccount, accountNumber, bankRouting, bankName, bankCityState, signature, date, termsConditionsAgreement, termsConditionsSignature } = this.state;
+        const { address, city, state, zip, email, phone, accountType, nameOnAccount, accountNumber, bankRouting, bankName, bankCityState, signature, date, termsConditionsAgreement, termsConditionsSignature } = this.state;
+        const { docId } = this.state;
+        if(docId !== '') return <Redirect to={`/payment-confirmation/${docId}`} />;
         return (
             <>
                 <h1>New Age Health And Wellness</h1>
@@ -143,6 +143,72 @@ class DirectDepositPersonalInfo extends React.Component {
                 </p>
 
                 <form method="POST" className='form' onSubmit={this.handleSubmit}>
+                <div className='input-wrapper-100'>
+                        <FormInput 
+                            type="text"
+                            name="address"
+                            value={address}
+                            onChange={this.handleChange}
+                            label="Street Address *"
+                            required
+                            icon={<FaMapSigns className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-30'>
+                        <FormInput 
+                            type="text"
+                            name="city"
+                            value={city}
+                            onChange={this.handleChange}
+                            label="City *"
+                            required
+                            icon={<TiLocation className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-30'>
+                        <FormInput 
+                            type="text"
+                            name="state"
+                            value={state}
+                            onChange={this.handleChange}
+                            label="State *"
+                            required
+                            icon={<TiLocation className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-30'>
+                        <FormInput 
+                            type="number"
+                            name="zip"
+                            value={zip}
+                            onChange={this.handleChange}
+                            label="Postal / Zip Code *"
+                            required
+                            icon={<GiEarthAmerica className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-48'>
+                        <FormInput 
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={this.handleChange}
+                            label="Email *"
+                            required
+                            icon={<MdEmail className='icon' />}
+                        />
+                    </div>
+                    <div className='input-wrapper-48'>
+                        <FormInput 
+                            type="number"
+                            name="phone"
+                            value={phone}
+                            onChange={this.handleChange}
+                            label="Phone *"
+                            required
+                            icon={<MdLocalPhone className='icon' />}
+                        />
+                    </div>
                     <div className='input-wrapper-48'>
                         <label className='form__label' htmlFor="checking">
                         <span className='form__labelInline'>Account Type *</span>

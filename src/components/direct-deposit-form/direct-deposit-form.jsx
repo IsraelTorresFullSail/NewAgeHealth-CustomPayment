@@ -1,13 +1,12 @@
 import React from 'react';
 import Select from 'react-dropdown-select';
+import { Redirect } from 'react-router-dom';
 
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 
-import { FaUser, FaDollarSign, FaMapSigns } from 'react-icons/fa';
-import { GiEarthAmerica } from 'react-icons/gi';
-import { TiLocation } from 'react-icons/ti';
-import { MdEmail, MdLocalPhone } from 'react-icons/md';
+import { FaUser, FaDollarSign } from 'react-icons/fa';
+
 
 import './direct-deposit-form.scss';
 
@@ -25,7 +24,7 @@ const optionsMonth = [
     { label: "September", value: "September" }, { label: "October", value: "October" }, { label: "November", value: "November" }, { label: "December", value: "December" },
 ];
 const optionsTherapy = [
-    { label: "Hormone Replacement", value: "Hormone Replacement" }, { label: "Peptide Therapy", value: "Peptide Therapy" }, { label: "Vitamins", value: "Vitamins" },
+    { label: "Hormone Replacement Therapy", value: "Hormone Replacement Therapy" }, { label: "Peptide Therapy", value: "Peptide Therapy" }, { label: "Vitamins", value: "Vitamins" },
     { label: "Cannabidiol Therapy", value: "Cannabidiol Therapy" }, { label: "Erectile Dysfunction", value: "Erectile Dysfunction" }, { label: "IV Therapy", value: "IV Therapy" },
     { label: "Testosterone Therapy", value: "Testosterone Therapy" },
 ];
@@ -55,6 +54,7 @@ class DirectDepositForm extends React.Component {
             date: '',
             termsConditionsAgreement: '',
             termsConditionsSignature: '',
+            docId: '',
         };
     }
 
@@ -88,15 +88,15 @@ class DirectDepositForm extends React.Component {
                 day: '',
                 month: '',
                 therapy: '',
-                address: '',
-                city: '',
-                state: '',
-                zip: '',
-                email: '',
-                phone: '',
+                // address: '',
+                // city: '',
+                // state: '',
+                // zip: '',
+                // email: '',
+                // phone: '',
             });
-            // Get the current doc Id and redirect to the user info page
-            this.props.history.push(`/personal-info/${docRef.Pc.path.segments[1]}`)
+            // Get the current doc Id and set the state
+            this.setState({ docId: docRef.Pc.path.segments[1] })
           })
           .catch((error) => {
             console.error("Error adding document: ", error);
@@ -110,7 +110,10 @@ class DirectDepositForm extends React.Component {
 
     render() {
         // eslint-disable-next-line
-        const { name, amount, day, month, therapy, address, city, state, zip, email, phone } = this.state;
+        const { name, amount, day, month, therapy } = this.state;
+        // Redirect to the next step if the doc id exist.
+        const { docId } = this.state;
+        if(docId !== '') return <Redirect to={`/personal-info/${docId}`} />;
         return(
             <>
                 <h1>New Age Health And Wellness</h1>
@@ -172,72 +175,6 @@ class DirectDepositForm extends React.Component {
                             className='select'
                             placeholder='Select service... *'
                             required
-                        />
-                    </div>
-                    <div className='input-wrapper-100'>
-                        <FormInput 
-                            type="text"
-                            name="address"
-                            value={address}
-                            onChange={this.handleChange}
-                            label="Street Address *"
-                            required
-                            icon={<FaMapSigns className='icon' />}
-                        />
-                    </div>
-                    <div className='input-wrapper-30'>
-                        <FormInput 
-                            type="text"
-                            name="city"
-                            value={city}
-                            onChange={this.handleChange}
-                            label="City *"
-                            required
-                            icon={<TiLocation className='icon' />}
-                        />
-                    </div>
-                    <div className='input-wrapper-30'>
-                        <FormInput 
-                            type="text"
-                            name="state"
-                            value={state}
-                            onChange={this.handleChange}
-                            label="State *"
-                            required
-                            icon={<TiLocation className='icon' />}
-                        />
-                    </div>
-                    <div className='input-wrapper-30'>
-                        <FormInput 
-                            type="number"
-                            name="zip"
-                            value={zip}
-                            onChange={this.handleChange}
-                            label="Postal / Zip Code *"
-                            required
-                            icon={<GiEarthAmerica className='icon' />}
-                        />
-                    </div>
-                    <div className='input-wrapper-48'>
-                        <FormInput 
-                            type="email"
-                            name="email"
-                            value={email}
-                            onChange={this.handleChange}
-                            label="Email *"
-                            required
-                            icon={<MdEmail className='icon' />}
-                        />
-                    </div>
-                    <div className='input-wrapper-48'>
-                        <FormInput 
-                            type="number"
-                            name="phone"
-                            value={phone}
-                            onChange={this.handleChange}
-                            label="Phone *"
-                            required
-                            icon={<MdLocalPhone className='icon' />}
                         />
                     </div>
                     <div className='input-wrapper-100'>

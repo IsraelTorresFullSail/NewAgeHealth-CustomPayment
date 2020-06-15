@@ -2,6 +2,8 @@ import React from 'react';
 import CustomButton from '../custom-button/custom-button';
 import { Redirect } from 'react-router-dom';
 
+import { RiCheckboxLine, RiCheckboxBlankLine } from 'react-icons/ri'
+
 import './direct-deposit-confirmation.scss';
 
 import firebase from '../../firebase/firebase.utils';
@@ -52,10 +54,25 @@ class DirectDepositConfirmation extends React.Component {
         this.setState({ message: true });
     }
 
-//"https://www.nahaw.com/thank-you"
     render() {
         const { message } = this.state;
         if (message === true) return <Redirect to="/thank-you" />;
+
+        let termsConditionsSignature = '';
+        if(this.state.directDeposit.termsConditionsSignature === true) {
+            termsConditionsSignature = <RiCheckboxLine />;
+        }
+        else {
+            termsConditionsSignature = <RiCheckboxBlankLine />
+        }
+        let termsConditionsAgreement = '';
+        if(this.state.directDeposit.termsConditionsAgreement === true) {
+            termsConditionsAgreement = <RiCheckboxLine />;
+        }
+        else {
+            termsConditionsSignature = <RiCheckboxBlankLine />
+        }
+
         return (
             <>
                 <div id="container" style={{
@@ -108,6 +125,12 @@ class DirectDepositConfirmation extends React.Component {
                     </div>
                     <div className='text-wrapper'>
                         <h3 className='space'>Date: <span className='span'>{this.state.directDeposit.date}</span></h3>
+                    </div>
+                    <div className="text-wrapper">
+                        <p><span>{termsConditionsSignature}</span> I understand that checking this box constitutes a legal signature confirming that I acknowledge and agree to the above Terms of Acceptance.</p>
+                    </div>
+                    <div className="text-wrapper">
+                        <p><span>{termsConditionsAgreement}</span> I understand that this authorization will remain in effect until I cancel it in writing, and I agree to notify New Age Health And Wellness in writing of any changes in my account information or termination of this authorization at least 60 days prior to the next billing date. If the above noted payment dates fall on a weekend or holiday, I understand that because these are electronic transactions, these funds may be withdrawn from my account as soon as the above noted periodic transaction dates. In the case of an ACH Transaction being rejected for Non Sufficient Funds (NSF) I understand that New Age Health And Wellness may at its discretion attempt to process the charge again in 3 business days, and agree to an additional 50.00 charge for each attempt returned NSF. I acknowledge that the origination of ACH transactions to my account must comply with the provisions of U.S. law. I certify that I am an authorized user of this bank account and will not dispute these scheduled transactions with my bank; so long as the transactions correspond to the terms indicated in this authorization form.</p>
                     </div>
                     
                 </div>

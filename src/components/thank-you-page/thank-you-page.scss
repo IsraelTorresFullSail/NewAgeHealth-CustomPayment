@@ -1,0 +1,24 @@
+$blue-color: #0b8ff9;;
+$white-color: #ffffff;
+
+.caption {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px 50px 20px;
+    border: 2px solid #ccc;
+
+    .h1TY {
+        text-transform: uppercase;
+        font-size: 52px;
+    }
+
+    .h2TY {
+        background-color: $blue-color;
+        color: $white-color;
+        padding: 15px;
+    }
+}
